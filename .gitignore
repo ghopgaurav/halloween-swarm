@@ -1,0 +1,11 @@
+.env
+__pycache__/
+.DS_Store
+.crewai/
+.venv/
+*.pyc
+queue/
+data/.embed_cache.json
+.onerc
+runs/*
+!runs/*-LIVE.jsonl

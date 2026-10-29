@@ -1,0 +1,6 @@
+crewai==1.15.33
+mcp==1.30.0
+openai==2.54.0
+httpx==0.28.1
+python-dotenv==1.2.4
+pydantic==2.12.5

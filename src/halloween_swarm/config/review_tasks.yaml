@@ -1,0 +1,48 @@
+review_sensor_task:
+  description: >
+    The tick just escalated sector {sector} with action {action}. Your slice (sensors and containment only):
+
+    {sensor_slice}
+
+    Call sensor_pattern_match for {sector}, then judge whether the readings show a real manifestation,
+    a sensor fault or normal activity. Set method to "embeddings", or "llm-fallback" if embeddings were unavailable.
+  expected_output: >
+    threat_score, closest pattern and one line of evidence for {sector}.
+  agent: sensor_analyst
+
+review_intel_task:
+  description: >
+    The tick just escalated sector {sector} with action {action}. Your slice (the sighting only):
+
+    {sighting_slice}
+
+    Call ground_sighting for the entity class, then judge the sighting's credibility from its confidence,
+    witness count and what the results support. Cite only URLs the tool returned.
+  expected_output: >
+    credibility, decoy flag, one-sentence grounding and source URLs for {sector}.
+  agent: intel_analyst
+
+review_civilian_task:
+  description: >
+    The tick just escalated sector {sector} with action {action}. Your slice (civilians and containment only):
+
+    {civilian_slice}
+
+    Call civilian_registry for {sector} and report who is at risk.
+  expected_output: >
+    civilians_at_risk, pinned_count and a short note for {sector}.
+  agent: civilian_officer
+
+review_command_task:
+  description: >
+    Sector {sector} was escalated and {action} was submitted. Review that decision using only your
+    specialists' reports (in your context) and this doctrine:
+
+    {doctrine}
+
+    Set agrees to true if the doctrine and the reports support {action}; otherwise false, with the action
+    they support in recommended_action. Write rationale as one sentence of at most 160 characters citing the
+    deciding facts, and responder_note as an instruction of at most 18 words for responders arriving now.
+  expected_output: >
+    agrees, recommended_action, rationale and responder_note.
+  agent: commander

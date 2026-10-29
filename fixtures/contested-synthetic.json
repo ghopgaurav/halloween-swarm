@@ -1,0 +1,50 @@
+{
+  "scenario": "contested-synthetic",
+  "note": "Written by this team, not an organizer fixture. Ambiguous sectors that tier-0 triage cannot settle, to exercise the swarm path.",
+  "ticks": [
+    {
+      "tick_id": 9001,
+      "facility_id": "aws-builder-loft-sf",
+      "sector_reports": [
+        {
+          "sector": "sponsor_booths",
+          "sensors": { "emf_milligauss": 72, "temp_c": 6, "motion_events": 11 },
+          "sighting": { "entity_class": "poltergeist", "confidence": 0.58, "witness_count": 2 },
+          "civilian_status": "clear",
+          "containment_state": "holding"
+        },
+        {
+          "sector": "server_closet",
+          "sensors": { "emf_milligauss": 410, "temp_c": 21, "motion_events": 0 },
+          "sighting": null,
+          "civilian_status": "clear",
+          "containment_state": "holding"
+        },
+        {
+          "sector": "main_stage",
+          "sensors": { "emf_milligauss": 4, "temp_c": 21, "motion_events": 38 },
+          "sighting": { "entity_class": "human-crowd", "confidence": 0.95, "witness_count": 0 },
+          "civilian_status": "clear",
+          "containment_state": "holding"
+        }
+      ],
+      "swarm_budget": { "max_active_agents": 8, "api_credits_remaining": 45000 },
+      "escalation_channel": { "app": "discord", "channel": "#loft-incident", "via": "webhook" }
+    },
+    {
+      "tick_id": 9002,
+      "facility_id": "aws-builder-loft-sf",
+      "sector_reports": [
+        {
+          "sector": "rooftop_terrace",
+          "sensors": { "emf_milligauss": 118, "temp_c": -6, "motion_events": 22 },
+          "sighting": { "entity_class": "wraith", "confidence": 0.86, "witness_count": 3 },
+          "civilian_status": "2 unaccounted for",
+          "containment_state": "holding"
+        }
+      ],
+      "swarm_budget": { "max_active_agents": 3, "api_credits_remaining": 41000 },
+      "escalation_channel": { "app": "discord", "channel": "#loft-incident", "via": "webhook" }
+    }
+  ]
+}

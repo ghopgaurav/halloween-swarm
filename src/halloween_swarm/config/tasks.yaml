@@ -1,0 +1,61 @@
+sensor_task:
+  description: >
+    Contested sectors' sensor readings (sensors and containment_state only), each with its Parasail
+    embedding match against the labelled reference patterns (embedding_threat 0-1 and the nearest
+    patterns; null when embeddings were unavailable):
+
+    {sensor_slice}
+
+    Judge each sector: a real manifestation, a sensor fault, or normal activity. Base threat_score on
+    the embedding match, and correct it only when the raw readings clearly contradict it (for example an
+    EMF spike with normal temperature and no motion reads as a fault). Set method to "embeddings", or
+    "llm-fallback" when every embedding match is null.
+  expected_output: >
+    threat_score, closest pattern and one line of evidence for every listed sector.
+  agent: sensor_analyst
+
+intel_task:
+  description: >
+    Contested sectors' sighting reports (entity_class, confidence, witness_count), each with the You.com
+    search results (title, url, highlights) for what that entity class implies:
+
+    {sighting_slice}
+
+    Judge each sighting's credibility from the reported confidence, the witness count and what the
+    results support. Mark likely decoys (for example a low-confidence residual echo). Cite only URLs
+    that appear in the results.
+  expected_output: >
+    credibility, decoy flag, one-sentence grounding and source URLs for every listed sector.
+  agent: intel_analyst
+
+civilian_task:
+  description: >
+    Civilian status and containment state for sectors whose status text needs reading:
+
+    {civilian_slice}
+
+    For every sector, say whether civilians are at risk and how many are pinned or otherwise unable to
+    leave.
+  expected_output: >
+    civilians_at_risk, pinned_count and a short note for every listed sector.
+  agent: civilian_officer
+
+command_task:
+  description: >
+    Decide the action for each contested sector: {sector_names}.
+
+    Facts already established in code for these sectors (parsed fields, not judgments):
+
+    {settled_facts}
+
+    Your specialists' reports are in your context. Doctrine:
+
+    {doctrine}
+
+    For each contested sector output action (contain, evacuate or observe), escalate (true only for a
+    hazard the doctrine says to escalate; never with observe) and a rationale of one sentence, at most
+    160 characters, citing the deciding readings, credibility or civilian facts. Set primary_sector to the
+    most urgent contested sector and primary_action to its action.
+  expected_output: >
+    A decision for every contested sector, plus primary_sector and primary_action.
+  agent: commander

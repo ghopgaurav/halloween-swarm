@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "skills": {
+    "ask-docs": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/ask-docs/SKILL.md",
+      "computedHash": "eea5babc063a460d6e51a340186bb8f779457471eca3598ce4c4f8897169c68d"
+    },
+    "build-flow": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/build-flow/SKILL.md",
+      "computedHash": "f0d21402172a603e0d54f1b49c549cf60bfd969744c30e2e5ca5a53fcb00a24c"
+    },
+    "call-deployed-crew": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/call-deployed-crew/SKILL.md",
+      "computedHash": "969bbd3527db10d6cc4a03052efd9807dd6c7042360ef275706d9c563f12a386"
+    },
+    "check-crewai-api": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/check-crewai-api/SKILL.md",
+      "computedHash": "cd1181f88c6890a31ea5b292358a80cd0c128a4f23fa1d2565afe0f08ce736a5"
+    },
+    "connect-tools-and-mcp": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/connect-tools-and-mcp/SKILL.md",
+      "computedHash": "185a3481fe7b7c20b8b46cbc6ca3b3c91f35b6bbfff85f101044e3c2a1c4b6b1"
+    },
+    "deploy-to-amp": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/deploy-to-amp/SKILL.md",
+      "computedHash": "3e736c51a38d1bfaf75156670f947ebee36d45c8a739a473820d5ab38d83a828"
+    },
+    "design-agent": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/design-agent/SKILL.md",
+      "computedHash": "e8b3de2e74fcecb46984a36917429ab6c0970d6b789388211befd16fdb1086d4"
+    },
+    "design-task": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/design-task/SKILL.md",
+      "computedHash": "5efbc5e44daa9d1edf698f0cbb589ef31b666007a41065e8d8d0d2fc82345634"
+    },
+    "getting-started": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/getting-started/SKILL.md",
+      "computedHash": "ace022dba577a77e20e3b42a99684b60a47e95c6a5cdf1d1290942f0f12a1d08"
+    },
+    "grill-me": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/grill-me/SKILL.md",
+      "computedHash": "6ee919ae87c0bc4fe2b40abb2d11a7d3640a54e4dc9fd115ad9957b1fb08d046"
+    },
+    "karpathy-guidelines": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/karpathy-guidelines/SKILL.md",
+      "computedHash": "41e8ca055bbde13d240776a14a076a59614057200340c243130a76ba4e64cac8"
+    },
+    "tdd": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/tdd/SKILL.md",
+      "computedHash": "47c08d26094f98ecebc33b3c30a50b3bc38c7740a28d28a80372ecf7862e0ac5"
+    },
+    "test-crewai-project": {
+      "source": "crewaiinc/skills",
+      "sourceType": "github",
+      "skillPath": "skills/test-crewai-project/SKILL.md",
+      "computedHash": "4399d1cd4eefd42fedc1fb0a7a7e843b757680d612b60257d52e448aa5de59cf"
+    },
+    "you-discover": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/you-discover/SKILL.md",
+      "computedHash": "d615c7eccfa0611f053c7ae9b78d3d652a27ceaba6df5d5bfe0c2b5cf1ad060a"
+    },
+    "you-finance": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/you-finance/SKILL.md",
+      "computedHash": "3ff0b6dbaaea4e7aa34ce76a97fc5a6f8d2190a58c92cccf825e02fcf8c235fa"
+    },
+    "you-research": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/you-research/SKILL.md",
+      "computedHash": "9188a11147725ab5a5f7e6484db56d0e6871f718958a61cae7f719fa440455e4"
+    },
+    "you-web": {
+      "source": "youdotcom-oss/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/you-web/SKILL.md",
+      "computedHash": "e04ce511db02754536c10fb8d85d2cb36772d8c6ae030baea291e58ce9ecd08e"
+    }
+  }
+}

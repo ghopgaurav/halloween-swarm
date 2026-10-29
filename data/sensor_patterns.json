@@ -1,0 +1,15 @@
+{
+  "about": "Seeded reference readings for the sensor analyst. Each sector's live reading is embedded with Parasail and compared to these by cosine similarity. threat is 0 (benign) to 1 (active manifestation).",
+  "patterns": [
+    {"label": "normal crowd", "threat": 0.0, "sensors": {"emf_milligauss": 5, "temp_c": 22, "motion_events": 55}, "containment_state": "holding"},
+    {"label": "normal quiet room", "threat": 0.0, "sensors": {"emf_milligauss": 2, "temp_c": 20, "motion_events": 1}, "containment_state": "holding"},
+    {"label": "normal busy catering", "threat": 0.05, "sensors": {"emf_milligauss": 9, "temp_c": 23, "motion_events": 30}, "containment_state": "holding"},
+    {"label": "electrical noise near equipment", "threat": 0.15, "sensors": {"emf_milligauss": 25, "temp_c": 22, "motion_events": 5}, "containment_state": "holding"},
+    {"label": "sensor fault: impossible temperature, no activity", "threat": 0.1, "sensors": {"emf_milligauss": 0, "temp_c": -40, "motion_events": 0}, "containment_state": "holding"},
+    {"label": "sensor fault: EMF spike with normal temperature and no motion", "threat": 0.15, "sensors": {"emf_milligauss": 400, "temp_c": 21, "motion_events": 0}, "containment_state": "holding"},
+    {"label": "residual echo: mild cold spot, moderate EMF", "threat": 0.3, "sensors": {"emf_milligauss": 40, "temp_c": 12, "motion_events": 5}, "containment_state": "holding"},
+    {"label": "early manifestation: rising EMF, cooling", "threat": 0.6, "sensors": {"emf_milligauss": 70, "temp_c": 5, "motion_events": 10}, "containment_state": "holding"},
+    {"label": "active manifestation: high EMF, freezing, movement", "threat": 0.9, "sensors": {"emf_milligauss": 110, "temp_c": -5, "motion_events": 20}, "containment_state": "holding"},
+    {"label": "active manifestation with breach", "threat": 1.0, "sensors": {"emf_milligauss": 160, "temp_c": -12, "motion_events": 35}, "containment_state": "breached"}
+  ]
+}
