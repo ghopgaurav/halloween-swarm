@@ -118,6 +118,12 @@ def test_observe_never_escalates():
     assert final.sectors[0].action == "observe" and not final.sectors[0].escalate
 
 
+def test_breach_without_a_sighting_is_contained_not_evacuated():
+    """Doctrine 4: evacuation without visual confirmation is over-escalation; a breach alone gets contained."""
+    t = tick(sector(emf=130, temp=-8, sighting=None, containment="breached"))
+    assert decide(t, {"s1": ("evacuate", True)}).sectors[0].action == "contain"
+
+
 def test_no_evacuation_without_confirmation_or_breach():
     t = tick(sector(emf=60, sighting={"entity_class": "poltergeist", "confidence": 0.4, "witness_count": 1}))
     assert decide(t, {"s1": ("evacuate", True)}).sectors[0].action != "evacuate"

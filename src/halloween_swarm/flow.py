@@ -97,6 +97,9 @@ class TickFlow(Flow[TickState]):
                 "civilians": ("clear" if civilians_clear(by_sector[t["sector"]]["civilian_status"])
                               else f"{pinned_count(by_sector[t['sector']]['civilian_status'])} pinned"),
                 "embedding_threat": t["embedding_threat"],
+                "nearest_pattern": t["nearest"],
+                "sighting": ({k: by_sector[t["sector"]]["sighting"][k] for k in ("entity_class", "confidence", "witness_count")}
+                             if by_sector[t["sector"]].get("sighting") else None),
             } for t in contested]),
             "sector_names": ", ".join(t["sector"] for t in contested),
             "doctrine": doctrine(),

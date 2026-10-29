@@ -20,9 +20,26 @@ when a real hazard trips.
 |---|---|
 | Live feed, scored by the organizers (`runs/20261028-174930-LIVE.jsonl`) | **3/3 correct, 0 false alarms**: evacuate, evacuate, observe |
 | Consistency, 13 repeated fixture runs (including 3 LLM-driven contested runs) | **13/13 identical outcomes**, 0 safety-gate overrides |
-| Offline rule tests ([tests/test_rules.py](tests/test_rules.py)) | **23/23 pass** |
+| Offline rule tests ([tests/test_rules.py](tests/test_rules.py)) | **24/24 pass** |
 | Decision latency on the organizer ticks | **11 ms median** (first tick of a run: about 0.5 s of one-time CrewAI start-up) |
 | LLM calls before submitting a clear-cut tick | **0** |
+
+### Bias check: following doctrine, not recalling the known ticks
+
+[scripts/evaluate.py](scripts/evaluate.py) runs the real pipeline (embeddings, triage, swarm, gate) with **no
+embedding cache** and never submits. Reports: [seed 2026](docs/evaluation-seed2026.json), [seed 7](docs/evaluation-seed7.json).
+
+| Test | What it would catch | Result |
+|---|---|---|
+| Cold start on the 3 organizer ticks | answers coming from cached state | 3/3 correct |
+| Metamorphic: new sector names, tick and facility ids, sector order, hostile entity names | memorised ids or names | 9/9 decisions unchanged |
+| Counterfactuals: unpin civilians, un-breach, remove the sighting | a fixed answer per tick | 4/4 move as the doctrine says |
+| Held-out: 80 random ticks (164 sectors) with unseen sectors, entities and readings | tuning to the fixtures | **95/95** doctrine-unambiguous sectors correct, **0 false alarms**, **0 breaches observed** |
+| Held-out judgment cases (confidence, witnesses and sensors in tension) | coin-flip decisions | 31/39 → **38/39** (seed 2026) and **30/30** (fresh seed 7), once the doctrine defined "confirmed" (doctrine 7) |
+| Ablation: drop the fixture-derived "human-crowd is benign" rule | dependence on knowing the control tick | the swarm judges it itself: observe, no alert, 2/2 |
+
+The evaluation also caught a real over-escalation. The gate allowed evacuating a breach with no sighting at all,
+which the oracle calls "evacuation without visual confirmation". It now contains instead, and a test pins it.
 
 ## How a tick flows
 
@@ -87,7 +104,7 @@ Applied to every final decision, whoever made it. It reads tick fields only, nev
 - Confirmed hostile breach → evacuate.
 - A breach is never observed (observing a breach scores 0) → at least contain.
 - Incident-free sector → observe.
-- No evacuation without a breach or a confirmed sighting.
+- No evacuation without a confirmed sighting, unless civilians are pinned in a breach.
 - Observe never escalates.
 
 ### Background review swarm
@@ -252,7 +269,8 @@ If the swarm challenges a decision, the post says so.
 | [docs/doctrine.md](docs/doctrine.md) | Oracle answers and the distilled doctrine the swarm follows |
 | [docs/tools.md](docs/tools.md) | The scenario MCP's tool schemas |
 | [fixtures/](fixtures/) | Organizer fixtures, plus our `contested-synthetic.json` to exercise the swarm |
-| [tests/test_rules.py](tests/test_rules.py) | 23 offline rule tests |
+| [tests/test_rules.py](tests/test_rules.py) | 24 offline rule tests |
+| [scripts/evaluate.py](scripts/evaluate.py) | Bias and generalisation evaluation: cold start, metamorphic, counterfactual, held-out, ablation |
 | [runs/](runs/) | Evidence logs; the scored live run is committed |
 
 ## Setup

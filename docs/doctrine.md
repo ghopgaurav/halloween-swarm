@@ -97,3 +97,11 @@ Each rule cites the oracle answer above it came from.
 5. **Escalate to Discord only for hazards and blockers**; log false alarms locally (cold spots, whispers,
    flickers). (Q: When should a team escalate)
 6. A **level-5-phantom** is maximum threat; report location, do not engage solo. (Q: What is a level-5-phantom)
+7. **Operational definitions** (ours: how we read the oracle's "confirmed" and "verify first"; the safety gate uses
+   the same thresholds). Confirmation needs two independent signals:
+   - *Visual contact*: a hostile sighting (not `residual-echo` or `human-crowd`) with confidence of at least 0.6.
+   - *Corroboration*: at least one witness, **or** sensor readings that resemble a manifestation (embedding threat
+     of at least 0.4). A sensor-fault match never corroborates.
+   - **Confirmed manifestation = visual contact + corroboration → contain** (evacuate if the sector is breached).
+   - Visual contact with no witness and no corroborating readings is unverified → **observe** and log.
+   - Readings alone, or a sighting below 0.6, are ambiguous → **observe**, except that a breach is never observed (contain).

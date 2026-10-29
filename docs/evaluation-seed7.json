@@ -1,0 +1,1576 @@
+{
+ "cold_start": {
+  "142": {
+   "primary": "evacuate",
+   "expected": "evacuate",
+   "ok": true,
+   "ms": 534,
+   "llm_agents": []
+  },
+  "143": {
+   "primary": "evacuate",
+   "expected": "evacuate",
+   "ok": true,
+   "ms": 294,
+   "llm_agents": []
+  },
+  "900": {
+   "primary": "observe",
+   "expected": "observe",
+   "ok": true,
+   "ms": 242,
+   "llm_agents": []
+  }
+ },
+ "metamorphic": {
+  "variants": 9,
+  "unchanged": 9,
+  "detail": [
+   {
+    "from": 142,
+    "variant": 0,
+    "same_decisions": true,
+    "primary": "evacuate"
+   },
+   {
+    "from": 142,
+    "variant": 1,
+    "same_decisions": true,
+    "primary": "evacuate"
+   },
+   {
+    "from": 142,
+    "variant": 2,
+    "same_decisions": true,
+    "primary": "evacuate"
+   },
+   {
+    "from": 143,
+    "variant": 0,
+    "same_decisions": true,
+    "primary": "evacuate"
+   },
+   {
+    "from": 143,
+    "variant": 1,
+    "same_decisions": true,
+    "primary": "evacuate"
+   },
+   {
+    "from": 143,
+    "variant": 2,
+    "same_decisions": true,
+    "primary": "evacuate"
+   },
+   {
+    "from": 900,
+    "variant": 0,
+    "same_decisions": true,
+    "primary": "observe"
+   },
+   {
+    "from": 900,
+    "variant": 1,
+    "same_decisions": true,
+    "primary": "observe"
+   },
+   {
+    "from": 900,
+    "variant": 2,
+    "same_decisions": true,
+    "primary": "observe"
+   }
+  ]
+ },
+ "counterfactual": [
+  {
+   "change": "civilians clear (breach + confirmed level-5 remain)",
+   "action": "evacuate",
+   "ok": true
+  },
+  {
+   "change": "civilians clear and containment holding",
+   "action": "contain",
+   "ok": true
+  },
+  {
+   "change": "no sighting, clear, holding, normal readings",
+   "action": "observe",
+   "ok": true
+  },
+  {
+   "change": "breached, no sighting, nobody pinned",
+   "action": "contain",
+   "ok": true
+  }
+ ],
+ "held_out": {
+  "sectors": 86,
+  "doctrine_unambiguous": 56,
+  "agree": 56,
+  "false_alarms": 0,
+  "breaches_observed": 0,
+  "tiers": {
+   "quiet": 48,
+   "mandated": 8,
+   "contested": 30
+  },
+  "judgment_cases": {
+   "manifestation readings, sighting, holding -> observe": 3,
+   "normal readings, sighting, holding -> observe": 12,
+   "fault readings, sighting, holding -> observe": 3,
+   "normal readings, sighting, holding -> contain": 6,
+   "manifestation readings, no sighting, holding -> observe": 3,
+   "fault readings, sighting, holding -> contain": 1,
+   "manifestation readings, sighting, breached -> contain": 1,
+   "manifestation readings, sighting, holding -> contain": 1
+  },
+  "disagreements": [],
+  "rows": [
+   {
+    "tick": 50000,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.27,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50000,
+    "sector": "atrium",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.55,
+     "witness_count": 3
+    },
+    "civilians": "2 pinned",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50000,
+    "sector": "lab_3",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.75,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3170
+   },
+   {
+    "tick": 50001,
+    "sector": "green_room",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50001,
+    "sector": "cloakroom",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 311
+   },
+   {
+    "tick": 50002,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50002,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.69,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50002,
+    "sector": "mezzanine",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.36,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3484
+   },
+   {
+    "tick": 50003,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "revenant",
+     "confidence": 0.37,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50003,
+    "sector": "rooftop",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3155
+   },
+   {
+    "tick": 50004,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "shade",
+     "confidence": 0.54,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50004,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50004,
+    "sector": "mezzanine",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.2,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3069
+   },
+   {
+    "tick": 50005,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.52,
+     "witness_count": 4
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50005,
+    "sector": "loading_dock",
+    "regime": "manifestation",
+    "sighting": null,
+    "civilians": "2 pinned",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50005,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2423
+   },
+   {
+    "tick": 50006,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.66,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 341
+   },
+   {
+    "tick": 50007,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "revenant",
+     "confidence": 0.29,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50007,
+    "sector": "green_room",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50007,
+    "sector": "stairwell_b",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.56,
+     "witness_count": 1
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1816
+   },
+   {
+    "tick": 50008,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.92,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2025
+   },
+   {
+    "tick": 50009,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.81,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50009,
+    "sector": "stairwell_b",
+    "regime": "manifestation",
+    "sighting": null,
+    "civilians": "6 pinned",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1768
+   },
+   {
+    "tick": 50010,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.49,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50010,
+    "sector": "loading_dock",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2115
+   },
+   {
+    "tick": 50011,
+    "sector": "mezzanine",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "wraith",
+     "confidence": 0.52,
+     "witness_count": 5
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50011,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "revenant",
+     "confidence": 0.52,
+     "witness_count": 5
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3254
+   },
+   {
+    "tick": 50012,
+    "sector": "cloakroom",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50012,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.92,
+     "witness_count": 1
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2117
+   },
+   {
+    "tick": 50013,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "shade",
+     "confidence": 0.87,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50013,
+    "sector": "atrium",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50013,
+    "sector": "cloakroom",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.75,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2561
+   },
+   {
+    "tick": 50014,
+    "sector": "cloakroom",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.7,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50014,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1951
+   },
+   {
+    "tick": 50015,
+    "sector": "atrium",
+    "regime": "manifestation",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50015,
+    "sector": "green_room",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50015,
+    "sector": "rooftop",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "banshee",
+     "confidence": 0.66,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1816
+   },
+   {
+    "tick": 50016,
+    "sector": "stairwell_b",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "shade",
+     "confidence": 0.92,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50016,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "banshee",
+     "confidence": 0.38,
+     "witness_count": 5
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50016,
+    "sector": "loading_dock",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.79,
+     "witness_count": 1
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3788
+   },
+   {
+    "tick": 50017,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 383
+   },
+   {
+    "tick": 50018,
+    "sector": "mezzanine",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "revenant",
+     "confidence": 0.77,
+     "witness_count": 1
+    },
+    "civilians": "3 pinned",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50018,
+    "sector": "loading_dock",
+    "regime": "manifestation",
+    "sighting": null,
+    "civilians": "3 pinned",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50018,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 450
+   },
+   {
+    "tick": 50019,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.5,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2328
+   },
+   {
+    "tick": 50020,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.24,
+     "witness_count": 1
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50020,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50020,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.85,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 349
+   },
+   {
+    "tick": 50021,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50021,
+    "sector": "stairwell_b",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 325
+   },
+   {
+    "tick": 50022,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.53,
+     "witness_count": 1
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50022,
+    "sector": "stairwell_b",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 468
+   },
+   {
+    "tick": 50023,
+    "sector": "mezzanine",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.28,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50023,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50023,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1920
+   },
+   {
+    "tick": 50024,
+    "sector": "atrium",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.52,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 328
+   },
+   {
+    "tick": 50025,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50025,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.53,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50025,
+    "sector": "loading_dock",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 410
+   },
+   {
+    "tick": 50026,
+    "sector": "rooftop",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 497
+   },
+   {
+    "tick": 50027,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50027,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 329
+   },
+   {
+    "tick": 50028,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 322
+   },
+   {
+    "tick": 50029,
+    "sector": "green_room",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.74,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "breached",
+    "expected": null,
+    "got": "contain",
+    "escalate": true,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50029,
+    "sector": "rooftop",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.69,
+     "witness_count": 4
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50029,
+    "sector": "cloakroom",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 3053
+   },
+   {
+    "tick": 50030,
+    "sector": "stairwell_b",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50030,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.49,
+     "witness_count": 4
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2209
+   },
+   {
+    "tick": 50031,
+    "sector": "stairwell_b",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50031,
+    "sector": "green_room",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "banshee",
+     "confidence": 0.5,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50031,
+    "sector": "atrium",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "wraith",
+     "confidence": 0.69,
+     "witness_count": 5
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "contain",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2773
+   },
+   {
+    "tick": 50032,
+    "sector": "atrium",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50032,
+    "sector": "mezzanine",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.73,
+     "witness_count": 2
+    },
+    "civilians": "1 pinned",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 523
+   },
+   {
+    "tick": 50033,
+    "sector": "atrium",
+    "regime": "manifestation",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50033,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1503
+   },
+   {
+    "tick": 50034,
+    "sector": "lab_3",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50034,
+    "sector": "green_room",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "shade",
+     "confidence": 0.37,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50034,
+    "sector": "loading_dock",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "wraith",
+     "confidence": 0.35,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 2556
+   },
+   {
+    "tick": 50035,
+    "sector": "cloakroom",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50035,
+    "sector": "atrium",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "poltergeist",
+     "confidence": 0.37,
+     "witness_count": 0
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1709
+   },
+   {
+    "tick": 50036,
+    "sector": "lab_3",
+    "regime": "normal",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 356
+   },
+   {
+    "tick": 50037,
+    "sector": "cloakroom",
+    "regime": "fault",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50037,
+    "sector": "lab_3",
+    "regime": "manifestation",
+    "sighting": null,
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": null,
+    "got": "observe",
+    "escalate": false,
+    "tier": "contested",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 1550
+   },
+   {
+    "tick": 50038,
+    "sector": "cloakroom",
+    "regime": "manifestation",
+    "sighting": {
+     "entity_class": "specter-class-3",
+     "confidence": 0.88,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "breached",
+    "expected": "evacuate",
+    "got": "evacuate",
+    "escalate": true,
+    "tier": "mandated",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 307
+   },
+   {
+    "tick": 50039,
+    "sector": "rooftop",
+    "regime": "fault",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.75,
+     "witness_count": 2
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false
+   },
+   {
+    "tick": 50039,
+    "sector": "green_room",
+    "regime": "normal",
+    "sighting": {
+     "entity_class": "residual-echo",
+     "confidence": 0.56,
+     "witness_count": 3
+    },
+    "civilians": "clear",
+    "containment": "holding",
+    "expected": "observe",
+    "got": "observe",
+    "escalate": false,
+    "tier": "quiet",
+    "breach_observed": false,
+    "false_alarm": false,
+    "ms": 409
+   }
+  ]
+ },
+ "ablation_human_crowd": [
+  {
+   "primary": "observe",
+   "escalate": false,
+   "tier": "contested",
+   "agents": [
+    "intel_analyst",
+    "commander"
+   ]
+  },
+  {
+   "primary": "observe",
+   "escalate": false,
+   "tier": "contested",
+   "agents": [
+    "intel_analyst",
+    "commander"
+   ]
+  }
+ ]
+}

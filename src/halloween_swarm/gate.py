@@ -64,11 +64,13 @@ def gate_sector(report: dict, proposed: SectorDecision | None) -> tuple[SectorDe
         rule = "gate default: commander gave no decision for this sector"
         action = "contain" if confirmed_hostile(report.get("sighting")) else "observe"
         decided = SectorDecision(sector=sector, action=action, escalate=False, rationale=facts(report))
-    elif proposed.action == "evacuate" and not (report.get("containment_state") == "breached"
-                                                or confirmed_hostile(report.get("sighting"))):
-        rule = "doctrine 4: no evacuation without visual confirmation or a breach"
-        action = "contain" if hostile(report.get("sighting")) else "observe"
-        decided = SectorDecision(sector=sector, action=action, escalate=False, rationale=proposed.rationale)
+    elif proposed.action == "evacuate" and not confirmed_hostile(report.get("sighting")):
+        # Pinned civilians in a breach were handled above; any other evacuation needs a confirmed sighting.
+        rule = "doctrine 4: no evacuation without visual confirmation"
+        breached = report.get("containment_state") == "breached"
+        action = "contain" if breached or hostile(report.get("sighting")) else "observe"
+        decided = SectorDecision(sector=sector, action=action, escalate=breached and proposed.escalate,
+                                 rationale=proposed.rationale)
     else:
         rule, decided = None, proposed
 
