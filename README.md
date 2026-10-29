@@ -20,7 +20,7 @@ when a real hazard trips.
 |---|---|
 | Live feed, scored by the organizers (`runs/20261028-174930-LIVE.jsonl`) | **3/3 correct, 0 false alarms**: evacuate, evacuate, observe |
 | Consistency, 13 repeated fixture runs (including 3 LLM-driven contested runs) | **13/13 identical outcomes**, 0 safety-gate overrides |
-| Offline rule tests ([tests/test_rules.py](tests/test_rules.py)) | **22/22 pass** |
+| Offline rule tests ([tests/test_rules.py](tests/test_rules.py)) | **23/23 pass** |
 | Decision latency on the organizer ticks | **11 ms median** (first tick of a run: about 0.5 s of one-time CrewAI start-up) |
 | LLM calls before submitting a clear-cut tick | **0** |
 
@@ -102,9 +102,15 @@ escalated sector:
 | Civilian Safety Officer | `civilian_registry` | status parser |
 | Commander | (none) | decides whether to confirm or challenge the submitted action, and writes the responder instruction |
 
-The Discord post carries the verdict, for example:
+The Discord post carries the verdict. Line 1 is the venue's required format; the evidence goes underneath:
 
-> `team-g-aura · catering_coffee_bar · evacuate · 4 pinned in a breached sector; level-5-phantom @0.91 (4 witnesses); EMF 131 mG, -7 C (~'active manifestation with breach') · swarm review (4 agents): confirmed, … · responders: Extract the four pinned civilians; do not engage the manifestation solo. · tick 143 · decided in 12ms by doctrine triage, swarm not needed`
+```text
+team-g-aura · catering_coffee_bar · evacuate · 4 pinned in a breached sector; level-5-phantom @0.91 (4 witnesses); EMF 131 mG, -7 C (~'active manifestation with breach')
+tick 143 · score 1 · false alarm: no · decided in 12ms by doctrine triage · peak agents 4/8
+Sectors: catering_coffee_bar → evacuate (mandated, ~active manifestation with breach) | entrance → observe (quiet, ~residual echo: mild cold spot, moderate EMF)
+Swarm review (civilian officer, sensor analyst, intel analyst, commander): confirmed: Containment is breached with an active manifestation (EMF 131 mG, -7C, 24 motion events) and 4 pinned civilians, making evacuation mandatory per doctrine.
+Responders: Evacuate all pinned civilians immediately; do not engage the entity solo.
+```
 
 ## How we use embeddings
 
@@ -246,7 +252,7 @@ If the swarm challenges a decision, the post says so.
 | [docs/doctrine.md](docs/doctrine.md) | Oracle answers and the distilled doctrine the swarm follows |
 | [docs/tools.md](docs/tools.md) | The scenario MCP's tool schemas |
 | [fixtures/](fixtures/) | Organizer fixtures, plus our `contested-synthetic.json` to exercise the swarm |
-| [tests/test_rules.py](tests/test_rules.py) | 22 offline rule tests |
+| [tests/test_rules.py](tests/test_rules.py) | 23 offline rule tests |
 | [runs/](runs/) | Evidence logs; the scored live run is committed |
 
 ## Setup

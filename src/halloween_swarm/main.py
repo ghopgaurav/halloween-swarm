@@ -42,7 +42,33 @@ def parse_args(argv):
     return p.parse_args(argv)
 
 
-def dispatch(team: str, tick: dict, esc: dict, metrics: str, post: bool) -> dict:
+def format_dispatch(team: str, tick: dict, esc: dict, facts: dict, verdict: ReviewVerdict | None,
+                    review_roster: list[str]) -> str:
+    """Discord post. Line 1 is the venue's required `TEAM · sector · action · rationale`; the evidence goes below it."""
+    lines = [f"{team} · {esc['sector']} · {esc['action']} · {esc['rationale']}"]
+
+    judgment = (facts.get("judgment") or {}).get("judgment")
+    verdict_part = (f"score {judgment.get('score')} · false alarm: {'yes' if judgment.get('false_alarm') else 'no'}"
+                    if judgment else "practice run, not submitted")
+    ms = facts["decided_ms"]
+    took = f"{ms}ms" if ms < 1000 else f"{ms / 1000:.1f}s"
+    how = f"decision swarm of {facts['decision_agents']}" if facts["decision_agents"] else "doctrine triage"
+    peak = max(facts["decision_agents"], len(review_roster))
+    lines.append(f"tick {tick['tick_id']} · {verdict_part} · decided in {took} by {how} · peak agents {peak}/{facts['budget']}")
+
+    lines.append("Sectors: " + " | ".join(
+        f"{t['sector']} → {d['action']} ({t['tier']}{', ~' + t['nearest'] if t.get('nearest') else ''})"
+        for t, d in zip(facts["triage"], facts["final_sectors"])))
+
+    if isinstance(verdict, ReviewVerdict):
+        who = ", ".join(r.replace("_", " ") for r in review_roster)
+        outcome = "confirmed" if verdict.agrees else f"CHALLENGED, would {verdict.recommended_action}"
+        lines.append(f"Swarm review ({who}): {outcome}: {one_line(verdict.rationale, 160)}")
+        lines.append(f"Responders: {one_line(verdict.responder_note, 140)}")
+    return "\n".join(lines)
+
+
+def dispatch(team: str, tick: dict, esc: dict, facts: dict, post: bool) -> dict:
     """The review swarm checks the submitted escalation and writes the dispatch, then it is posted (when acting).
     Runs in the background, so it never delays a submission."""
     SCOPE.set(f"dispatch:{tick['tick_id']}")
@@ -62,15 +88,7 @@ def dispatch(team: str, tick: dict, esc: dict, metrics: str, post: bool) -> dict
             error = f"attempt {attempt}: {type(e).__name__}: {str(e)[:160]}"
             time.sleep(2)
 
-    message = f"{team} · {esc['sector']} · {esc['action']} · {esc['rationale']}"
-    if isinstance(verdict, ReviewVerdict):
-        if verdict.agrees:
-            message += f" · swarm review ({len(roster)} agents): confirmed, {one_line(verdict.rationale, 140)}"
-        else:
-            message += (f" · swarm review ({len(roster)} agents): challenged, would {verdict.recommended_action}: "
-                        f"{one_line(verdict.rationale, 140)}")
-        message += f" · responders: {one_line(verdict.responder_note, 120)}"
-    message += f" · {metrics}"
+    message = format_dispatch(team, tick, esc, facts, verdict, roster)
     status = None
     if post:
         try:
@@ -129,13 +147,9 @@ def main(argv=None) -> int:
             budget = tick.get("swarm_budget", {}).get("max_active_agents")
             agents = len(state.roster)
             if state.escalation:
-                score = (judgment or {}).get("judgment", {}).get("score")
-                took = f"{decide_ms}ms" if decide_ms < 1000 else f"{decide_ms / 1000:.1f}s"
-                how = (f"swarm of {agents}/{budget} agents" if agents
-                       else "doctrine triage, swarm not needed")
-                metrics = (f"tick {tick['tick_id']} · decided in {took} by {how}"
-                           + (f" · score {score}" if score is not None else ""))
-                job = pool.submit(contextvars.copy_context().run, dispatch, team, tick, state.escalation, metrics, acting)
+                facts = {"judgment": judgment, "decided_ms": decide_ms, "decision_agents": agents, "budget": budget,
+                         "triage": state.triage, "final_sectors": final["sectors"]}
+                job = pool.submit(contextvars.copy_context().run, dispatch, team, tick, state.escalation, facts, acting)
                 dispatches.append(job)
 
             calls = LEDGER.drain()

@@ -183,3 +183,22 @@ def test_no_secrets_in_tracked_files():
     for p in ROOT.rglob("*"):
         if p.is_file() and ".git" not in p.parts and "tests" not in p.parts and p.name != ".env" and p.suffix in {".py", ".md", ".json", ".yaml", ".toml", ".txt", ".example"}:
             assert not pattern.search(p.read_text(errors="ignore")), f"secret-looking value in {p.relative_to(ROOT)}"
+
+
+def test_dispatch_first_line_is_the_venue_format():
+    from halloween_swarm.main import format_dispatch
+    from halloween_swarm.schemas import ReviewVerdict
+
+    t = next(x for x in ticks("outbreak-level-5.json") if x["tick_id"] == 143)
+    triage = [x.to_dict() for x in triage_tick(t, stub_matches(t))]
+    final = decide(t, {r["sector"]: ("observe", False) for r in t["sector_reports"]})
+    esc = {"sector": "catering_coffee_bar", "action": "evacuate", "rationale": "4 pinned in a breached sector"}
+    facts = {"judgment": {"judgment": {"score": 1, "false_alarm": False}}, "decided_ms": 12, "decision_agents": 0,
+             "budget": 8, "triage": triage, "final_sectors": [d.model_dump() for d in final.sectors]}
+    verdict = ReviewVerdict(agrees=True, recommended_action="evacuate", rationale="breach plus pinned civilians",
+                            responder_note="Extract the pinned civilians first.")
+    msg = format_dispatch("team-x", t, esc, facts, verdict, ["civilian_officer", "sensor_analyst", "intel_analyst", "commander"])
+    first, *rest = msg.split("\n")
+    assert re.fullmatch(r"team-x · catering_coffee_bar · evacuate · .+", first)
+    assert "tick 143 · score 1 · false alarm: no" in rest[0] and "peak agents 4/8" in rest[0]
+    assert len(msg) <= 1900 and "…" not in msg
